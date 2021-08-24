@@ -1,0 +1,30 @@
+<h3>Agregar <small>{{nuevo.nombre}}</small></h3>
+<hr>
+<!-- El $event nos dice que se mandara el evento a agregar -->
+<!-- El ngSubmit es un submit personalizado de Angular -->
+<!-- El [value] implica que hay un valor que debtro dek componente queremos retomar-->
+<!-- Los corchetes implican que van a darle propiedades al ngSubmit -->
+<!-- Los parentesis implican escuchar un evento -->
+<!-- [value]="nuevo.nombre"
+(input)="cambiarNombre($event)" -->
+<!-- Con parentesis y corchetes nos referimos que queremos tanto escuchar el evento como emitirlo a nuevo en su propiedad nombre  -->
+<!-- El crear la propiedad nombre en el input es para poder identificar la propiedad de nuevo que se va a modificar -->
+<!-- todas las modificaciones del imput se hacen en tiempo real -->
+<form (ngSubmit)="agregar()">
+    <input 
+        type="text" 
+        placeholder="Nombre"
+        name="nombre"
+        [(ngModel)]= "nuevo.nombre"
+    />
+    <input 
+        type="number" 
+        placeholder="Poder"
+        name="poder"
+        [(ngModel)]= "nuevo.poder"
+    />
+
+    <button type="submit">
+        Agregar
+    </button>
+</form>

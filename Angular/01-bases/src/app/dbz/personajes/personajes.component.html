@@ -1,0 +1,9 @@
+<h3>Personajes</h3>
+<hr>
+<ul>
+    <!-- Personaje es un objeto por lo que debemos de especificar que propiedad queremos imprimir -->
+    <!-- La tuberia sirve para indicarle a Angular que queremos que grafique como numero (Con comas) -->
+    <li *ngFor="let personaje of personajes;">
+        {{personaje.nombre}} - {{personaje.poder | number}}
+    </li>
+</ul>
