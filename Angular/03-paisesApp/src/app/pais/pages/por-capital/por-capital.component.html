@@ -1,18 +1,23 @@
-<h2>Por Capital</h2>
-<hr>
+<div class= "animate__animated animate__fadeIn animate__faster">
+    <h2>Por Capital</h2>
+    <hr>
 
-<div class="row">
-    <div class="col">
-        <!-- Ya que creamos y emitimos el evento onEnter, solo hace falta escucharlo en el padre -->
-        <!-- El event viene del form -->
-        <app-pais-input
-            (onEnter)="buscar( $event )"
-            placeholder="Buscar capital...">
-        </app-pais-input>
+    <div class="row">
+        <div class="col">
+            <!-- Ya que creamos y emitimos el evento onEnter, solo hace falta escucharlo en el padre -->
+            <!-- El event viene del form -->
+            <app-pais-input
+                (onEnter)="buscar( $event )"
+                placeholder="Buscar capital...">
+            </app-pais-input>
+        </div>
     </div>
+
+    <hr>
+
 </div>
 
-<hr>
+
 <!-- Verificacion de estado para la impresion o no del error -->
 <div    *ngIf="hayError"
         class="alert alert-danger">

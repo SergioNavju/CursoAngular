@@ -6,6 +6,11 @@ import { Country } from '../../interfaces/pais.interface';
   selector: 'app-por-pais',
   templateUrl: './por-pais.component.html',
   styles: [
+    `
+      li{
+        cursor: pointer;
+      }
+    `
   ]
 })
 export class PorPaisComponent {
@@ -18,12 +23,17 @@ export class PorPaisComponent {
   //Propiedad que usaremos para poder formar la listas de paises y poder imprimirlas 
   paises: Country[] =[];
 
+  //Propiedad que controlara los paises segeridos
+  paisesSugeridos: Country[] =[];
+  mostrarSugerencias: boolean = false;
+
   //Inyectamos el servicio para poder usar todos sus terminos
   constructor( private paisService: PaisService) {
   }
 
   //Metodo mencionado en le Html
   buscar( termino: string){
+    this.mostrarSugerencias= false;
     //En cuanto se haga la paticion se elimina el error
     this.hayError= false;
     //El termino que se tiene como parametro se le da al que tnemos definido en la clase
@@ -44,5 +54,17 @@ export class PorPaisComponent {
  //Siempre que pasen 300 milesimas de segundo despuesd e que termine de escirbir se emitira el evento y se emitiran las sugerencias ademas de eliminr el error
   sugerencias(termino: string) {
     this.hayError = false;
+    this.termino = termino;
+    this.mostrarSugerencias = true;
+
+    this.paisService.buscarPais(termino)
+      .subscribe(paises => this.paisesSugeridos = paises.splice(0,5),
+      (err) => this.paisesSugeridos=[]
+    );
+  }
+  
+  buscarSugerido(termino:string){
+    this.buscar(termino);
+    
   }
 }
