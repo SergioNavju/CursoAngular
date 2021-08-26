@@ -1,0 +1,30 @@
+<!-- Imprimimos el titulo de cada GIF -->
+<!-- <ul>
+    <li *ngFor="let gif of resultados">.
+        sdfsd
+        {{ gif.title }}
+    </li>
+</ul> -->
+<!-- Recordar que cuando usamos comillas usamos JavaScript -->
+<div class="row">
+<!-- Creamos la parte de adaptabilidad en pantalla -->
+    <div *ngFor="let gif of resultados"
+         class="col-md-4 col-sm-6 animate__animated animate__fadeIn">
+    <!-- Hacemos un for que crea las tarjetas para cada uno de los resultafos que obtenemos -->
+        <div class="card">
+            <!-- Usamos la etiqueta Img para poder incertar los GIFS del tamaño que habiamos sacado  -->
+            <!-- Al usar corchetes le decimos que queremos que use la propiedad del objeto que tiene definido en gif.images.downsized_medium.url-->
+            <img [src]="gif.images.downsized_medium.url" 
+                 [alt]="gif.title"
+                 class="card-img-top">
+
+            <div class="card-body">
+                <p class="card-text">
+                    {{ gif.title }}
+                </p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
