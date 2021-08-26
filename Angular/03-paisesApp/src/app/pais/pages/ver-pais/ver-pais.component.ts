@@ -23,7 +23,7 @@ export class VerPaisComponent implements OnInit {
   ngOnInit(): void {
 
     //Es un observable
-    //Podemos optimizar el siguiente codigo pero no lo haremos 
+    //Podemos optimizar el siguiente codigo pero no lo haremos... al final si lo hicimos 
     // this.activatedRoute.params
     //   .subscribe( ({id}) =>{
     //     console.log(id);
