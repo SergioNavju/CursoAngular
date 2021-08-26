@@ -1,0 +1,31 @@
+<h2>Busquedas</h2>
+<hr>
+<ul class="list-group">
+    <!-- Para los links tenemo que agragr los paths que definimos en el routing module -->
+    <!-- routerLinkActive se refiere a que es lo que queremos que sucede mientras se esta en esa ruta -->
+    <!-- Como tenemos un path vacio debemos de controlar cuando se activan sus propiedades por eso el LinkActive Options -->
+    <li 
+        routerLink=""
+        routerLinkActive="active"
+        [routerLinkActiveOptions]= "{exact:true}"
+        class= "list-group-item"
+    >
+        Buscar País
+    </li>
+
+    <li 
+        routerLink="region"
+        routerLinkActive="active"
+        class= "list-group-item"
+    >
+        Buscar Región
+    </li>
+
+    <li 
+        routerLink="capital"
+        routerLinkActive="active"
+        class= "list-group-item"
+    >
+        Buscar Capital
+    </li>
+</ul>

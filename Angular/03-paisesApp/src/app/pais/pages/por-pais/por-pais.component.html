@@ -1,0 +1,29 @@
+<h2>Por País</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <!-- Ya que creamos y emitimos el evento onEnter, solo hace falta escucharlo en el padre -->
+        <!-- El event viene del form -->
+        <app-pais-input
+            (onEnter)="buscar( $event )"
+            (onDebounce)="sugerencias( $event )"
+            placeholder="Buscar país...">
+        </app-pais-input>
+    </div>
+</div>
+
+<hr>
+<!-- Verificacion de estado para la impresion o no del error -->
+<div    *ngIf="hayError"
+        class="alert alert-danger">
+    No se encontró nada con el término {{termino}}
+</div>
+
+<div    *ngIf="paises.length > 0"
+        class="row">
+    <div class="col">
+        <!-- Aunque ya tenagamos definido paises dentro de pais-tabla debemos de mandarla atraves de por pais component, llamando con corchetes la nueva definicion con la propiedad que tenemos en por pais -->
+        <app-pais-tabla [paises]="paises"></app-pais-tabla>
+    </div>
+</div>
