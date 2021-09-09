@@ -1,0 +1,22 @@
+<div class="text-layout">
+    <h1>Pipes No Comunes</h1>
+    <p>
+        Pipes incluidos en Angular - Usualmente en el Common Module.
+    </p>
+</div>
+
+<!-- Los fieldset son elementos con los que se debe de importar el modulo dew Browser Animation -->
+<div class="grid">
+
+    <div class="col">
+        <p-fieldset legend= "i18nSelect Pipe" [toggleable]= "true">
+            Saludos {{nombre}}, es todo un placer {{genero | i18nSelect: invitacionMapa}} en nuetro evento.
+        </p-fieldset>
+    </div>
+
+    <div class="col">
+        <p-fieldset legend= "i18nPlural Pipe" [toggleable]= "true">
+            Actualmente tenemos 1 cliente esperando
+        </p-fieldset>
+    </div>
+</div>

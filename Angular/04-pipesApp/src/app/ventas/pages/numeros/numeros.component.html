@@ -1,0 +1,34 @@
+<div class="text-layout">
+    <h1>Decimal Pipe y Porcentajes</h1>
+    <p>
+        Pipes incluidos en Angular - Usualmente en el Common Module.
+    </p>
+</div>
+
+<div class="grid">
+    <div class="col-4">
+        <p-card header = "Ventas Netas"
+                subheader= "Del presente año">
+            <i class= "pi pi-dollar"></i>
+            <!-- Buscamos poder personalizar la cantidad de decimales que queremos imprimir despues del punto -->
+            <!-- Lo expresamos como una especie de rango desde el decimal minimo al decimal maximo -->
+            {{ventasNetas | number: ".6-6"}}
+        </p-card>
+    </div>
+
+    <div class="col-4">
+        <p-card header = "Ventas Brutas"
+                subheader= "Del presente año">
+            <!-- <i class= "pi pi-dollar"></i> -->
+            <!-- Podemos personalizar el simbolo de la moneda y evitar poner imagenes -->
+            {{ (ventasNetas + 2000000) | currency: 'CAD':'symbol-narrow'}}
+        </p-card>
+    </div>
+
+    <div class="col-4">
+        <p-card header = "Ganancia %"
+                subheader= "Del presente año">
+            {{ porcentaje | percent:"2.2-2"}}
+        </p-card>
+    </div>
+</div>
