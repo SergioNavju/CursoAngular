@@ -10,13 +10,91 @@
 
     <div class="col">
         <p-fieldset legend= "i18nSelect Pipe" [toggleable]= "true">
-            Saludos {{nombre}}, es todo un placer {{genero | i18nSelect: invitacionMapa}} en nuetro evento.
+            <p>
+                Saludos {{nombre}}, es todo un placer {{genero | i18nSelect: invitacionMapa}} en nuetro evento.
+            </p>
+            <button 
+                (click)= "cambiarCliente()" 
+                pButton label= "Cambiar Persona" 
+                class= "p-button-help">
+            </button>
         </p-fieldset>
     </div>
 
     <div class="col">
         <p-fieldset legend= "i18nPlural Pipe" [toggleable]= "true">
-            Actualmente tenemos 1 cliente esperando
+            <p>
+                Actualmente {{clientes.length | i18nPlural:clientesmapa}}
+            </p>
+            <button 
+                (click)= "borrarCliente()" 
+                pButton label= "Borrar Cliente" 
+                class= "p-button-danger">
+            </button>
         </p-fieldset>
     </div>
+
+    <div class="col">
+        <p-fieldset legend= "Slice Pipe" [toggleable]= "true">
+<!-- El ultimo parametro ademas de ser opcional, no se contenpla al imprimir -->
+            <b>Original</b>
+            <pre>{{clientes}}</pre>
+
+            <b>slice 0:2</b>
+            <pre>{{clientes | slice:0:2}}</pre>
+
+            <b>slice 1:2</b>
+            <pre>{{clientes | slice:1:2}}</pre>
+
+            <b>slice 1:3</b>
+            <pre>{{clientes | slice:1:3}}</pre>
+
+            <b>slice 3:3</b>
+            <pre>{{clientes | slice:3:3}}</pre>
+
+            <b>slice 0:4</b>
+            <pre>{{clientes | slice:0:4}}</pre>
+
+            
+        </p-fieldset>
+    </div>
+
+    <div class="col">
+        <p-fieldset legend= "Json Pipe" [toggleable]= "true">
+
+            <pre>{{heroes | json}}</pre>
+            
+        </p-fieldset>
+    </div>
+
+    <div class="col">
+        <p-fieldset legend= "KeyValue Pipe" [toggleable]= "true">
+
+            <ul>
+                <!-- La impresion del objeto se hara en orden alfabetico -->
+                <li *ngFor= "let item of persona | keyvalue">
+                    <b>
+                        {{item.key | titlecase}}:  
+                    </b>
+                        {{item.value}}
+                </li>
+            </ul>
+            
+        </p-fieldset>
+    </div>
+    
+    <div class="col">
+        <p-fieldset legend= "Async Pipe" [toggleable]= "true">
+            <!-- Tarda en quitarse porque como nos estamos suscribiendo al observable atraves de async estamos teniendo dos suscripciones diferentes  -->
+            <pre *ngIf="!(miObservable| async)">Resolviendo Observable</pre>
+            <pre>{{miObservable | async}}</pre>
+
+            <!-- Mientas la promesa no se resuelva estara regresando un null -->
+            <pre *ngIf="!(miPromesa | async)">Resolviendo Promesa</pre>
+            <pre>{{miPromesa | async}}</pre>
+
+        </p-fieldset>
+    </div>
+
+
 </div>
