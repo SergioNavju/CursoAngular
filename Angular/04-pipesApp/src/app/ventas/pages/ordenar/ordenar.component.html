@@ -1,1 +1,87 @@
-<p>ordenar works!</p>
+<div class="text-layout">
+    <h1>Pipes personalizados</h1>
+    <!-- En los pipes clasicos nosotros podemos notar que podemos recibir parametros extra. Tambien podemos recibir esos parametros en los pipes que creemos -->
+    <p>Pipes creados por {{"nosotros" | mayusculas: enMayusculas}}</p>
+    <!-- Cambiamos la varible enMayusculas (se encuentra en ordenar.components) -->
+</div>
+
+<p-toolbar>
+    <div class="toolbar-group-left"></div>
+    
+    <div class="toolbar-group-right">
+        <button pButton
+                label = "toggle mayusculas"
+                (click)="cambiar()"
+                class="mr-1 p-button-warning"
+                ></button>
+
+        <button pButton
+                icon = "pi pi-sort"
+                label = "Por nombre"
+                class="mr-1"
+                (click)="cambiarOrden('nombre')"
+                ></button>
+        
+        <button pButton
+                icon = "pi pi-sort"
+                label = "Vuela"
+                class="mr-1 p-button-success"
+                (click)="cambiarOrden('vuela')"
+                ></button>
+            
+        <button pButton
+                icon = "pi pi-sort"
+                label = "Por Color"
+                class="mr-1 p-button-help"
+                (click)="cambiarOrden('color')"
+                ></button>
+    </div>
+</p-toolbar>
+
+<div class="grid">
+    <div class="col mt-2">
+        <!-- Agregamos el pipe que creamos anteriormente -->
+        <p-table [value]="heroes | ordenar: ordenarPor" >
+            <!-- Hay que recordar que aquello que regrese el pipe es lo que se terminara mostrando -->
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Vuela</th>
+                    <th>Color</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-heroe>
+                <tr>
+                    <td>{{heroe.nombre}}</td>
+                    <td>{{heroe.vuela | vuela | titlecase}}</td>
+                    <td>{{heroe.color}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+<!-- Tabla que utiliza el sort de Prime NG -->
+<div class="grid">
+    <div class="col mt-2">
+        <!-- Agregamos el pipe que creamos anteriormente -->
+        <!-- El slice manda una copia del arreglo para asegurarse que el arreglo orginal se mantendra integro -->
+        <p-table [value]="heroes | slice:0">
+            <!-- Hay que recordar que aquello que regrese el pipe es lo que se terminara mostrando -->
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="nombre">Nombre<p-sortIcon field="nombre"></p-sortIcon></th>
+                    <th pSortableColumn="vuela">Vuela<p-sortIcon field="vuela"></p-sortIcon></th>
+                    <th pSortableColumn="color">Color<p-sortIcon field="color"></p-sortIcon></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-heroe>
+                <tr>
+                    <td>{{heroe.nombre}}</td>
+                    <td>{{heroe.vuela | vuela | titlecase}}</td>
+                    <td>{{heroe.color}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
