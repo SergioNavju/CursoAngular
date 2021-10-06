@@ -12,7 +12,7 @@ export class HeroesService {
 
   private urlLocal: string = environment.urlLocal;
 
-  //Declaramos los tipos
+  //Declaramos los tipos par pdoer hacer las peticiones a la base de datos
   constructor( private http: HttpClient) { }
 
   //Declaramos los metodos que nos devolveran los heroes
@@ -34,5 +34,11 @@ export class HeroesService {
   getSugerencias (termino: string): Observable <Heroe[]> {
     return this.http.get<Heroe[]>(`${this.urlLocal}/heroes?q=${ termino }&_limit=6`)
   } 
+
+  //Metodo para poder agregar superheroes a la base de datos 
+  //Basta con una petición POST a la url donde se encuentra la base de datos del db.json
+  agregarHeroe(heroe:Heroe): Observable<Heroe>{
+    return this.http.post<Heroe>(`${this.urlLocal}/heroes`, heroe)
+  }
 
 }
