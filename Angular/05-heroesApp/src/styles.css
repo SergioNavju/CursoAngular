@@ -2,3 +2,8 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/*clase global que va a mandar a todo a sus extremos*/
+.spacer{
+    flex: 1 1 auto;
+}

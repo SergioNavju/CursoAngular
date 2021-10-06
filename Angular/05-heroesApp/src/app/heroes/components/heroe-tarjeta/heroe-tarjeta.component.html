@@ -1,0 +1,38 @@
+<mat-card>
+
+    <mat-card-header>
+        <mat-card-title>{{heroe.superhero}}</mat-card-title>
+        <mat-card-subtitle>{{heroe.alter_ego}}</mat-card-subtitle>
+    </mat-card-header>
+
+    <!-- El nombre de la imagen es el mismo que el del ID -->
+    <!-- Primer Solución:
+    <img mat-card-image  src="assets/heroes/{{heroe.id}}.jpg"> -->
+
+    <!-- Segunda Solución (Pipe): -->
+    <img mat-card-image [src]="heroe | imagen" alt="">
+
+
+    <mat-card-content>
+        <h3>{{heroe.publisher}}</h3>
+        <p>
+            <strong>Primera aparición</strong> {{heroe.first_appearance}}
+            <br>
+            <strong>Personajes:</strong> {{heroe.characters}}
+        </p>
+    </mat-card-content>
+
+        <mat-card-actions>
+            <!-- En el routerLink mandamos en forma de argumentos los componentes de la ruta -->
+            <button mat-button 
+                    color= "warn"
+                    [routerLink]="['/heroes', heroe.id]">
+                Leer más...
+            </button>
+            <button mat-button
+                    [routerLink]="['/heroes/editar', heroe.id]">
+                Editar
+            </button>
+        </mat-card-actions>
+
+</mat-card>

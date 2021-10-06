@@ -1,1 +1,34 @@
-<p>listado works!</p>
+<h1>Listado de Heroes</h1>
+<mat-divider></mat-divider>
+<br>
+
+<!-- Atributos que correspndientes al angularFlex -->
+<!-- Los atributos que le añadimos a las etiquetas hacen las veces de un mediaquery -->
+
+<div fxLayout="row wrap"
+     fxLayout.xs="column"
+     fxLayoutAlign="center"
+     fxLayoutGap="20px">
+
+    <div fxFlex="20"
+         fxFlex.lg="15"
+         fxFlex.sm="30"
+         *ngFor = "let heroe of heroes">
+
+        <!-- Mandamos la varible que utilizamos para poder hacer el *ng for -->
+        <app-heroe-tarjeta [heroe]= "heroe"></app-heroe-tarjeta>
+
+    </div>
+    
+</div>
+
+<!-- Trajetas -->
+
+
+<!-- <p>listado works!</p>
+<ul> -->
+    <!-- Depues de indicarle que vamos a recorrer todo el arreglo debemo de indicar el atributo del objeto que queremos imprimir -->
+    <!-- <li *ngFor= "let heroe of heroes">
+        {{heroe.superhero}}
+    </li>
+</ul> -->

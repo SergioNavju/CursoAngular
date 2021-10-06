@@ -1,6 +1,68 @@
-<h1>
-    Heroes App
-</h1>
-<hr>
-<!-- Todas las rutas que se encuentrasn dentro del home component (la tura padre) se desplegaran  -->
-<router-outlet></router-outlet>
+<!-- Usaremos todos los componentes del container -->
+<mat-sidenav-container fullscreen>
+    <!-- Le añadimos una referencia local para poder indetificarlo dentro del resto del html -->
+    <mat-sidenav #sidenav mode="push">
+
+        <mat-toolbar color= "primary">
+            <span>Menú</span>
+            <!-- Espacio definido en los stilos globales -->
+            <span class= "spacer"></span>
+
+            <button mat-icon-button
+                    (click)= "sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </mat-toolbar>
+
+        <mat-nav-list>
+            <!-- Utilizamos el ./ porque ya nos encontramos dentro de heroe -->
+            <!-- Listado: -->
+
+            <a routerLink= "./listado"
+                mat-list-item
+                (click)= "sidenav.toggle()">
+                <mat-icon mat-list-icon> label</mat-icon>
+                <span>Listado de Heroes</span>
+            </a>
+
+            <a routerLink= "./agregar"
+                mat-list-item
+                (click)= "sidenav.toggle()">
+                <mat-icon mat-list-icon> add</mat-icon>
+                <span>Añadir Héroe</span>
+            </a>
+
+            <a routerLink= "./buscar"
+                mat-list-item
+                (click)= "sidenav.toggle()">
+                <mat-icon mat-list-icon> search</mat-icon>
+                <span>Buscar Héroe</span>
+            </a>
+
+        </mat-nav-list>
+
+    </mat-sidenav>
+
+    <mat-toolbar>
+        <!-- Todos los stributos que se le agregan a la etiqueta ya son del Material -->
+        <!-- Le agregamos el evento donde citamos la referencia local para aplicar el toggle -->
+        <button mat-icon-button
+                (click)= "sidenav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <!-- Espacio definido en los stilos globales -->
+        <span class= "spacer"></span>
+
+        <!-- Boton de Salida -->
+        <button mat-button>
+            Logout
+        </button>
+    </mat-toolbar>
+    
+    <div class="container">
+        <!-- Agregamos el listado de rutas que podemos tener  -->
+        <router-outlet></router-outlet>
+    </div>
+    
+</mat-sidenav-container>

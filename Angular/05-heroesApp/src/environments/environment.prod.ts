@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  urlLocal: "http://este-ya-es-el-sitio-en-internet.com"
 };
