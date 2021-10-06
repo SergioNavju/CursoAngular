@@ -28,7 +28,11 @@ export class HeroesService {
   getHeroePorId( id: string): Observable<Heroe>{
     return this.http.get <Heroe>(`${this.urlLocal}/heroes/${id}`);
   }
-
   //Todo esto se implementara en la parte de listados
+
+  //Metodo par pdoer obtener los resultados de busqueda con algun termino de busqueda
+  getSugerencias (termino: string): Observable <Heroe[]> {
+    return this.http.get<Heroe[]>(`${this.urlLocal}/heroes?q=${ termino }&_limit=6`)
+  } 
 
 }
