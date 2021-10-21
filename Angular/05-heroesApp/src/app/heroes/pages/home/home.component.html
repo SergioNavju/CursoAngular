@@ -54,8 +54,11 @@
         <!-- Espacio definido en los stilos globales -->
         <span class= "spacer"></span>
 
+        <span>{{auth.usuario}}</span>
+
         <!-- Boton de Salida -->
-        <button mat-button>
+        <button mat-button
+                (click)="logout()">
             Logout
         </button>
     </mat-toolbar>

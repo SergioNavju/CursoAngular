@@ -37,8 +37,19 @@ export class HeroesService {
 
   //Metodo para poder agregar superheroes a la base de datos 
   //Basta con una petición POST a la url donde se encuentra la base de datos del db.json
+  //El heroe se mandara como urlencoded
   agregarHeroe(heroe:Heroe): Observable<Heroe>{
-    return this.http.post<Heroe>(`${this.urlLocal}/heroes`, heroe)
+    return this.http.post<Heroe>(`${this.urlLocal}/heroes`, heroe);
+  }
+
+  //Creamos un metodo para poder actualizar el valor de un heroe en lugar de crearlo. Utilizamos Put
+  actualizarHeroe(heroe:Heroe): Observable<Heroe>{
+    return this.http.put<Heroe>(`${this.urlLocal}/heroes/${ heroe.id }`,heroe);
+  }
+
+  //Metodo para poder borrar heroe 
+  borrarHeroe( id: string): Observable<any>{
+    return this.http.delete<any>(`${this.urlLocal}/heroes/${id}`);
   }
 
 }
