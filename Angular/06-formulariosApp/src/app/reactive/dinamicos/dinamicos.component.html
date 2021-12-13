@@ -1,1 +1,98 @@
-<p>dinamicos works!</p>
+<h2>Reactive: <small> Dinámicos </small></h2>
+<hr>
+
+<form autocomplete="off" (ngSubmit)="guardar()" [formGroup]="miFormulario">
+
+
+    <!-- /---------------------------------------------------------/ -->
+    <!-- NOMBRE -->
+    <div class="mb-3 row">
+        <label class= "col-sm-3 col-form-label">Nombre</label>
+
+        <div class="col-sm-9">
+            <input class="form-control"
+                    formControlName="nombre"
+                   placeholder="Nombre de la Persona">
+            <span class="form-text text-danger"
+                    *ngIf="campoEsValido('nombre')">
+                Este campo es obligatorio
+            </span>
+        </div>
+    </div>
+
+
+    <!-- /---------------------------------------------------------/ -->
+    <!-- Agregar Favorito-->
+    <div class="mb-3 row">
+        <label class= "col-sm-3 col-form-label">Agregar</label>
+        <div class="col-sm-9">
+
+            <div class="input-group">
+                <input class="form-control"
+                       [formControl] = "nuevoFavorito"
+                       placeholder="Agregar favorito"
+                       (keyup.enter)="agregarFavorito()">
+
+                <button class="btn btn-outline-primary"
+                        type= "button"
+                        (click)="agregarFavorito()">
+                    Agregar
+                </button>
+            </div>
+            
+        </div>
+    </div>
+
+
+    <!-- /---------------------------------------------------------/ -->
+    <!-- Lista de Juegos Favoritos -->
+    <div class="mb-3 row">
+        <label class= "col-sm-3 col-form-label">Favoritos</label>
+        <!-- Con el formArray Name ya le indicamos al formulario que el siguiewnte arreglo es en que se va a verificar -->
+        <div class="col-sm-9" formArrayName="favoritos">
+
+            <div class="input-group mb-1"
+                *ngFor="let favorito of favoritosArray.controls; let i = index">
+
+                <!-- con el  [formControlName]="i" se indica el inidce del arreglo quer tmabine se le palicaran las validacines -->
+                <input  class="form-control"
+                        [formControlName]="i" >
+
+                <button class="btn btn-outline-danger"
+                        type= "button"
+                        (click)="borrar(i)">
+                    Eliminar
+                </button>
+            </div>
+
+            
+
+        </div>
+    </div>
+
+
+    <!-- /---------------------------------------------------------/ -->
+    <div class="row">
+        <div class="col-sm-12">
+            <button type="button"
+                    class="btn btn-primary float-end"
+                    (click)="guardar()">
+            Guardar
+            </button>
+        </div>
+    </div>
+
+</form>
+
+<!-- Status del formulario -->
+<span>Valid</span>
+<pre>{{miFormulario.valid}}</pre>
+
+<br>
+
+<span>Value</span>
+<pre>{{miFormulario.value | json}}</pre>
+
+<span>Agregar Juegos</span>
+<pre>{{nuevoFavorito.valid}}</pre>
+<pre>{{nuevoFavorito.value}}</pre>
