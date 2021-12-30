@@ -30,7 +30,12 @@
                 <div class="col-sm-9">
                     <input type="email"
                             class="form-control"
+                            formControlName="email"
                             placeholder="E-mail del usuario">
+                    <span class="form-text text-danger"
+                            *ngIf="campoNoValido('email')">
+                            El correo es obligatorio
+                    </span>
                 </div>
             </div>
 
@@ -41,7 +46,12 @@
                 <div class="col-sm-9">
                     <input type="text"
                             class="form-control"
+                            formControlName="username"
                             placeholder="Nombre código del usuario">
+                    <span class="form-text text-danger"
+                          *ngIf="campoNoValido('username')">
+                          El username no puede ser Wasabi
+                    </span>
                 </div>
             </div>
 
@@ -51,7 +61,13 @@
                 <div class="col-sm-9">
                     <input type="password"
                             class="form-control"
+                            formControlName="password"
                             placeholder="Password de su cuenta">
+                    <span class="form-text text-danger"
+                            *ngIf="campoNoValido('password')">
+                            La contrasena debe de ser mayor de 6 caracteres.
+                    </span>
+                    
                 </div>
             </div>
 
@@ -61,7 +77,12 @@
                 <div class="col-sm-9">
                     <input type="password"
                             class="form-control"
+                            formControlName="password2"
                             placeholder="Confirmar la password de su cuenta">
+                    <span class="form-text text-danger"
+                            *ngIf="campoNoValido('password2')">
+                            La contrasena debe de ser igual.
+                    </span>
                 </div>
             </div>
             
@@ -79,6 +100,24 @@
 </div>
 
 <h2>Form Valid: {{miFormulario.valid}}</h2>
+<h2>Form errors</h2>
+<pre>{{miFormulario.errors | json}}</pre>
 
-<h2>Nombre</h2>
+<h5>Nombre</h5>
 <pre>{{miFormulario.controls.nombre.errors | json}}</pre>
+
+<h5>E-mail</h5>
+<pre>{{miFormulario.controls.email.errors | json}}</pre>
+
+<h5>Username</h5>
+<pre>{{miFormulario.controls.username.errors | json}}</pre>
+
+<h5>Password</h5>
+<pre>{{miFormulario.controls.password.errors| json}}</pre>
+
+<h5>Confirmar</h5>
+<pre>{{miFormulario.controls.password2.errors | json}}</pre>
+
+<!-- Para poder hacer las validaciones del las dos 
+    contrasenas necesiamos poder concer si el 
+    formulario tiene errores en general  -->
