@@ -34,8 +34,21 @@
                             placeholder="E-mail del usuario">
                     <span class="form-text text-danger"
                             *ngIf="campoNoValido('email')">
+                            {{emailErrorMsg}}
+                    </span>
+                    <!-- <span class="form-text text-danger"
+                            *ngIf="emailRequired()">
                             El correo es obligatorio
                     </span>
+                    <span class="form-text text-danger"
+                            *ngIf="emailFormato()">
+                            El correo no tiene el formato adecuado
+                    </span>
+                    <span class="form-text text-danger"
+                            *ngIf="emailYaExiste()">
+                            El correo ya fue utilizado
+                    </span> -->
+                    
                 </div>
             </div>
 
@@ -89,6 +102,7 @@
             <div class="row">
                 <div class="col">
                     <button class="btn btn-primary float-end"
+                            [disabled]="miFormulario.pending"
                             type="submit">
                         Crear
                     </button>
@@ -99,8 +113,13 @@
     </div>
 </div>
 
+<!-- Estados del Formulario -->
 <h2>Form Valid: {{miFormulario.valid}}</h2>
-<h2>Form errors</h2>
+<h2>Form Status: {{miFormulario.status}}</h2>
+<h2>Form Pending: {{miFormulario.pending}}</h2>
+
+<!-- Estado de cada pregunta -->
+<h5>Form errors</h5>
 <pre>{{miFormulario.errors | json}}</pre>
 
 <h5>Nombre</h5>
