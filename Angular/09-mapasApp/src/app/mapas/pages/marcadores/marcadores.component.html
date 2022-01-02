@@ -4,10 +4,16 @@
         (click)="agregarMarkador()">
         + Agregar
     </li>
-
+<!-- Utilizamos ngStylew para pode modiuficar le color y entramos a la propiedad color del objeto marcador -->
+    <!-- Mandamos el marker para poder saber las coordernadas dse donde haya quedado el marcador -->
     <li class="list-group-item"
-    (click)="irMarkador()">
-        marker 1
+        *ngFor = "let marcador of marcadorres; let i = index"
+        (click)="irMarkador(marcador.marker!)"
+        (dblclick)="borrarMarcador(i)"
+        [ngStyle]="{
+                    'background-color':marcador.color
+                    }">
+        marker {{i + 1}}
     </li>
 
 </ul>
