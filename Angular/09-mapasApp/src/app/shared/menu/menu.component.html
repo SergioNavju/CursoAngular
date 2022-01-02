@@ -1,0 +1,9 @@
+<ul class="list-group">
+    <!-- Ng For para recorrer todos los items y poder movernos entre rutsas -->
+    <li *ngFor="let item of menuItems"
+        [routerLink]="[item.ruta]"
+        routerLinkActive="active"
+        class="list-group-item">
+        {{item.nombre}}
+    </li>
+</ul>
