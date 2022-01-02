@@ -1,0 +1,19 @@
+<h1>Graficas Dobles</h1>
+<hr>
+<div class="row">
+    <div class="col-md-6">
+        
+        <!-- Manadamos la informacion del componente padre al hijo con inputs -->
+        <!-- Utilizamos [] para mandar el valor y no strings -->
+        <app-grafica-barra  [horizontal]="true"
+                            [barChartData]="productoData"
+                            [barChartLabels]="proveedoresLabels">
+        </app-grafica-barra>
+    </div>
+
+    <div class="col-md-6">
+        <app-grafica-barra [barChartData]="proveedoresData"
+                           [barChartLabels]="proveedoresLabels">
+        </app-grafica-barra>
+    </div>
+</div>
