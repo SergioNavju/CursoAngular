@@ -2,6 +2,7 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 const { crearUsuario, loginUsuario, revalidarToken } = require('../controllers/auth.controller');
 const { validarCampos } = require('../middleware/validar-campos');
+const { validarJWT } = require('../middleware/validar-jwt');
 
 const router = Router()
 
@@ -36,7 +37,7 @@ router.post ('/',[
 ], loginUsuario);
 
 //Validar y revalidar el token
-router.get ('/renew', revalidarToken);
+router.get ('/renew',validarJWT, revalidarToken);
 
 
 //Necesitamos desestructurtarlo

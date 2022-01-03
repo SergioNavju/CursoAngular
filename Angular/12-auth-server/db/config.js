@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const dbConnection = async()=>{
     try{
         await mongoose.connect(process.env.BD_CNN,{
-            useNewUrlParser:true,
-            useUnifiedTopology: true,
-            useCreateIndex:true
+            // useNewUrlParser:true,
+            // useUnifiedTopology: true,
+            // useCreateIndex:true
         });
 
         console.log('DB Online');
