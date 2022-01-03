@@ -32,7 +32,7 @@ const crearUsuario = async(req,res = response)=>{
         dbUser.password = bcrypt.hashSync(password,salt);
 
         //Generar el Json Web Token (JWT)
-        const token = await generarJWT(dbUser,name);
+        const token = await generarJWT(dbUser.id,name);
 
         //Crear usuario en la base de datos
             //Usamos el await para indicar que debe de esperar a ter todos los datos
@@ -43,7 +43,9 @@ const crearUsuario = async(req,res = response)=>{
         return res.status(201).json({
             ok: true,
             uid: dbUser.id,
-            name
+            email,
+            name,
+            token
         });
 
         //Respuesta
@@ -93,12 +95,14 @@ const loginUsuario = async(req,res= response)=>{
             ok:true,
             uid: dbUser.id,
             name: dbUser.name,
+            email: dbUser.email,
             token
         });
 
 
     } catch (error) {
         console.log(error);
+
         return res.status(500).json({
             ok: false,
             msg: "Corre!! ve por el Admin !!"
@@ -110,15 +114,20 @@ const loginUsuario = async(req,res= response)=>{
 const revalidarToken = async(req,res = response)=>{
 
     //leer uid y name de la token
-    const {uid, name} = req;
+    const {uid} = req;
+
+    //leer de la base de datos
+    const dbUser = await Usuario.findById(uid);
 
     //Gneeramos el NUEVO JWT
-        const token = await generarJWT(uid,name);
+    const token = await generarJWT(uid,dbUser.name);
 
     return res.json({
         ok: true,
         uid,
-        name
+        name: dbUser.name,
+        email: dbUser.email,
+        token
     });
 }
 
