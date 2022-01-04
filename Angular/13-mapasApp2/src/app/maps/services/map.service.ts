@@ -35,7 +35,8 @@ export class MapService {
   }
 
   createMarkersFromPlaces( places: Feature[], userLocation: [number, number] ) {
-
+    
+    //Vlidacon del mapa
     if ( !this.map ) throw Error('Mapa no inicializado');
     
 
@@ -50,11 +51,13 @@ export class MapService {
           <span>${ place.place_name }</span>
         `);
 
+      //Anadimos lo markardores al mapa 
       const newMarker = new Marker()
         .setLngLat([lng, lat])
         .setPopup( popup )
         .addTo( this.map );
       
+        //Lpoa anadimos al arrglo de markadores
       newMarkers.push( newMarker );
     }
 
@@ -67,13 +70,14 @@ export class MapService {
     newMarkers.forEach( marker => bounds.extend( marker.getLngLat() ) );
     bounds.extend( userLocation );
 
+    //Creamos un margen de los markers
     this.map.fitBounds(bounds, {
       padding: 200
     })
 
   }
 
-
+  //Funcion para poder mandar los dos puntos iniciales y de termino para la rurta
   getRouteBetweenPoints( start: [number, number], end: [number, number] ) {
 
     this.directionsApi.get<DirectionsResponse>(`/${ start.join(',') };${ end.join(',') }`)
@@ -83,12 +87,15 @@ export class MapService {
 
   private drawPolyline( route: Route ) {
 
+    //Imprimimos la distancia y timpeo 
     console.log({ kms: route.distance / 1000, duration: route.duration / 60 });
 
+    //valifacion de mapa
     if ( !this.map ) throw Error('Mapa no inicializado');
 
     const coords = route.geometry.coordinates;
 
+    //Para centrarnos en esos unicos lugares
     const bounds = new LngLatBounds();
     coords.forEach( ([ lng, lat ]) => {
       bounds.extend([ lng, lat ]);
@@ -116,6 +123,7 @@ export class MapService {
       }
     }
 
+    //Limpiamos la poly line
     if ( this.map.getLayer('RouteString') ) {
       this.map.removeLayer('RouteString');
       this.map.removeSource('RouteString');
@@ -124,6 +132,7 @@ export class MapService {
 
     this.map.addSource('RouteString', sourceData );
 
+    //Como queremos que luzca la linea 
     this.map.addLayer({
       id: 'RouteString',
       type: 'line',
@@ -140,7 +149,4 @@ export class MapService {
 
 
   }
-
-
-
 }

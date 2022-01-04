@@ -1,19 +1,22 @@
-
+<!-- Alert de espera -->
 <div *ngIf="isLoadingPlaces" 
     class="alert alert-primary mt-2 text-center">
     <h6>Cargando</h6>
     <span>Espere por favor...</span>
 </div>
-
+<!-- Evaluamos que haya resultados que mostrar -->
 <ul class="list-group mt-2" *ngIf="places.length > 0">
 
+    <!-- Genereamos elementos que muestren los resultados y nos movemos a esos resultadops-->
     <li *ngFor="let place of places"
         class="list-group-item list-group-item-action pointer"
         [class.active]="place.id === selectedId"
         (click)="flyTo( place )"
-    >
+    >   
+    <!-- Ponemos los valores de los resultados -->
         <h6>{{ place.text_es }}</h6>
         <p>{{ place.place_name }}</p>
+        <!-- Verificamos que el boton vambie cuando lo seleccionamos -->
         <button 
             class="btn btn-sm"
             (click)="getDirections( place )"

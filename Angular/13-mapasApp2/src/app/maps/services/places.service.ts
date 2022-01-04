@@ -64,6 +64,7 @@ export class PlacesService {
 
     this.placesApi.get<PlacesResponse>(`/${ query }.json`, {
       params: {
+        //Definimos la proximidad atraves de la localizacion del usuario
         proximity: this.useLocation.join(',')
       }
     })
@@ -76,10 +77,9 @@ export class PlacesService {
 
   }
 
-
+  //Borrar los lugares 
   deletePlaces() {
     this.places = [];
   }
-
 
 }

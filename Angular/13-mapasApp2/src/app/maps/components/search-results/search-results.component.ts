@@ -31,17 +31,19 @@ export class SearchResultsComponent  {
     const [ lng, lat ] = place.center;
     this.mapService.flyTo([ lng, lat ]);
   }
-
+  //Metodo apra obetner la direccioon y poder generar rutas
   getDirections( place: Feature ) {
+
     if ( !this.placesService.useLocation ) throw Error('No hay userLocation');
 
+    //Pugar las busquedas
     this.placesService.deletePlaces();
 
+    //Obetnemos los valores
     const start = this.placesService.useLocation;
     const end = place.center as [number, number];
 
-    
-
+    //Mnadmaos lo valores
     this.mapService.getRouteBetweenPoints(start, end);
   }
 

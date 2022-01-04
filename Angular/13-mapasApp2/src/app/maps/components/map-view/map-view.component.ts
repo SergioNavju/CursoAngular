@@ -16,6 +16,7 @@ export class MapViewComponent implements AfterViewInit {
     private placesService: PlacesService,
     private mapService: MapService
   ) { }
+
     //Validaciones para tener todo listyo antes de de=plegar el mapa n
   ngAfterViewInit(): void {
     if ( !this.placesService.useLocation ) throw Error('No hay placesService.userLocation');
@@ -26,6 +27,7 @@ export class MapViewComponent implements AfterViewInit {
       center: this.placesService.useLocation,
       zoom: 14,
     });
+
     //Creamos el markador y el pop up inicial
     const popup = new Popup()
       .setHTML(`
@@ -38,6 +40,7 @@ export class MapViewComponent implements AfterViewInit {
       .setPopup( popup )
       .addTo( map )
 
+    //Se establece el mapa
     this.mapService.setMap( map );
 
   }
